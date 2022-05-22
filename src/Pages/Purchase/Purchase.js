@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 const Purchase = () => {
     const { id } = useParams()
     const [update, setUpdate] = useState({})
     const [item, setItem] = useState({})
+    const [user] = useAuthState(auth);
+
     useEffect(() => {
         const url = `http://localhost:5000/tools/${id}`
         fetch(url)
@@ -39,6 +44,8 @@ const Purchase = () => {
 
 
     }
+
+    // ============================================
     const orderDecrease = () => {
         if (parseInt(item.minimumQuantity) > 12) {
 
@@ -61,10 +68,36 @@ const Purchase = () => {
                 })
         }
     }
+    // =============================
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const onSubmit = async data => {
+        const booking = {
+            name: user.displayName,
+            email: user.email,
+
+            items: data.items,
+            itemName: data.itemName
+        }
+        console.log(booking);
+        fetch('http://localhost:5000/booking', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+                toast('Booking successfull')
+            })
+
+
+    };
 
     return (
-        <div>
-            <h2>Purchase</h2>
+        <div className='flex  flex-col lg:flex-row justify-evenly'>
+
             <div class="card w-96 bg-base-100 shadow-xl">
                 <figure class="px-10 pt-10">
                     <img src={item.picture} alt="Shoes" class="rounded-xl" />
@@ -84,6 +117,100 @@ const Purchase = () => {
                         </form>
                         <button onClick={() => orderDecrease()} className='my-5 btn btn-primary' >Order Decrease</button>
                     </div>
+                </div>
+            </div>
+            {/* ===========================order===== */}
+            <div>
+                <div className='card w-full'>
+                    <form className='card-body' onSubmit={handleSubmit(onSubmit)}>
+                        <h1>Hello, {user?.displayName}</h1>
+                        {/* name  */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Your Name"
+                                disabled
+                                className="input input-bordered bg-white"
+                                {...register("name")}
+                                defaultValue={user?.displayName}
+                            />
+                        </div>
+
+                        {/* email  */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input
+                                type="email"
+                                placeholder="Your Email"
+                                disabled
+                                className="input input-bordered bg-white"
+                                {...register("email")}
+                                defaultValue={user?.email}
+                            />
+                        </div>
+                        {/* ======================== */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Purchase item name</span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Purchaes item name"
+
+                                className="input input-bordered bg-white"
+                                {...register("itemName", {
+                                    required: {
+                                        value: true,
+                                        message: 'ItemName is Required'
+                                    },
+
+                                })}
+
+                            />
+                            <label className="label">
+                                {errors.itemName?.type === 'required' && <span className="label-text-alt text-red-500">{errors.itemName.message}</span>}
+                            </label>
+                        </div>
+
+                        {/* =================== */}
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Purchase items</span>
+                            </label>
+                            <input
+                                type="number"
+                                placeholder="Items quantity"
+                                className="input input-bordered bg-white"
+                                {...register("items", {
+                                    required: {
+                                        value: true,
+                                        message: 'Items is Required'
+                                    },
+                                    min: item?.minimumQuantity,
+                                    max: item?.availableQuantity
+                                })}
+                            />
+                            <label className="label">
+                                {errors.items?.type === 'required' && <span className="label-text-alt text-red-500">{errors.items.message}</span>}
+
+                                {errors.items?.type === 'min' && <span className="label-text-alt text-red-500">You have to Purchase minimum {item?.minimumQuantity} items</span>}
+
+                                {errors.items?.type === 'max' && <span className="label-text-alt text-red-500">You can't Purchase up to available {item?.availableQuantity} items</span>}
+                            </label>
+                        </div>
+
+                        <div className="form-control mt-6">
+                            <input type='submit' value='Purchase' className="btn btn-primary" />
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
         </div>
