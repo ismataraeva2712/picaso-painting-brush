@@ -14,6 +14,10 @@ import MyOrder from './Pages/Dashboard/MyOrder';
 import AddReview from './Pages/Dashboard/AddReview';
 import MakeAdmin from './Pages/Dashboard/MakeAdmin';
 import RequireAdmin from './Pages/Login/RequireAdmin';
+import AddProduct from './Pages/Dashboard/AddProduct';
+import ManageProduct from './Pages/Dashboard/ManageProduct';
+import Notfound from './Pages/Shared/Notfound';
+import MyProfile from './Pages/Dashboard/MyProfile';
 function App() {
   return (
     <div className="App">
@@ -23,20 +27,29 @@ function App() {
         <Route path='/purchase/:id' element={<RequireAuth>
           <Purchase></Purchase>
         </RequireAuth>}></Route>
-
+        {/* ========================================== */}
         <Route path='/dashboard' element={<RequireAuth>
           <Dashboard></Dashboard>
         </RequireAuth>}>
-         <Route index element={<MyOrder></MyOrder>}></Route>
+          <Route index element={<MyOrder></MyOrder>}></Route>
           <Route path='review' element={<AddReview></AddReview>}></Route>
+          <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
           <Route path='makeadmin' element={<RequireAdmin>
             <MakeAdmin></MakeAdmin>
+          </RequireAdmin>}></Route>
+          <Route path='addproduct' element={<RequireAdmin>
+            <AddProduct></AddProduct>
+          </RequireAdmin>}></Route>
+          <Route path='manageproduct' element={<RequireAdmin>
+            <ManageProduct></ManageProduct>
           </RequireAdmin>}></Route>
 
 
         </Route>
+        {/* ============================= */}
         <Route path='/signin' element={<Login></Login>} ></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
+        <Route path='*' element={<Notfound></Notfound>}></Route>
       </Routes>
       <ToastContainer />
     </div>

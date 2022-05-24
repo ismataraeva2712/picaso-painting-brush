@@ -15,68 +15,20 @@ const Purchase = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setItem(data))
-    }, [update])
-    // handle quantity
-    const handleQuantity = event => {
-
-        event.preventDefault()
-
-        const newquantity = parseInt(event.target.quantity.value) + parseInt(item.minimumQuantity)
-        if (newquantity < 1002 && newquantity > 12) {
-            const updatedQuantity = { minimumQuantity: newquantity }
-            fetch(`http://localhost:5000/tools/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(updatedQuantity)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log('success', data)
-                    setUpdate(data)
-                    toast('added successfully')
+    }, [])
 
 
-                })
-        }
-
-
-
-    }
-
-    // ============================================
-    const orderDecrease = () => {
-        if (parseInt(item.minimumQuantity) > 12) {
-
-            const newquantity = parseInt(item.minimumQuantity) - 1
-            const updatedQuantity = { minimumQuantity: newquantity }
-            fetch(`http://localhost:5000/tools/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(updatedQuantity)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log('success', data)
-                    setUpdate(data)
-                    toast('Delevery successfully')
-
-
-                })
-        }
-    }
     // =============================
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = async data => {
         const booking = {
             name: user.displayName,
             email: user.email,
+            orderQuantity: parseInt(data.orderQuantity),
+            phone: data.phone,
+            productName: item.name,
+            price: item.price
 
-            items: data.items,
-            itemName: data.itemName
         }
         console.log(booking);
         fetch('http://localhost:5000/booking', {
@@ -105,22 +57,18 @@ const Purchase = () => {
                 <div class="card-body items-center text-center">
                     <h2 class="card-title">Order for : {item.name}</h2>
                     <p>{item.description}</p>
+                    <p>Price: $ {item.price}</p>
                     <p>Available Quantity: {item.availableQuantity}</p>
-                    <p> Order  : {item.minimumQuantity}</p>
+                    <p>Minimum Quantity  : {item.minimumQuantity}</p>
 
                     <div className="my-5">
-                        <form className='my-5' onSubmit={handleQuantity}>
-                            <input type="number" name='quantity' placeholder="minimum 12 order" class="input input-bordered input-secondary w-full max-w-xs" />
-                            <input type="submit" className='btn btn-primary' value="Order increse" />
 
 
-                        </form>
-                        <button onClick={() => orderDecrease()} className='my-5 btn btn-primary' >Order Decrease</button>
                     </div>
                 </div>
             </div>
             {/* ===========================order===== */}
-            <div>
+            <div className="max-w-lg">
                 <div className='card w-full'>
                     <form className='card-body' onSubmit={handleSubmit(onSubmit)}>
                         <h1>Hello, {user?.displayName}</h1>
@@ -156,24 +104,24 @@ const Purchase = () => {
                         {/* ======================== */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Purchase item name</span>
+                                <span className="label-text">Phone</span>
                             </label>
                             <input
-                                type="text"
-                                placeholder="Purchaes item name"
+                                type="number"
+                                placeholder="phone"
 
                                 className="input input-bordered bg-white"
-                                {...register("itemName", {
+                                {...register("phone", {
                                     required: {
                                         value: true,
-                                        message: 'ItemName is Required'
+                                        message: 'phone is Required'
                                     },
 
                                 })}
 
                             />
                             <label className="label">
-                                {errors.itemName?.type === 'required' && <span className="label-text-alt text-red-500">{errors.itemName.message}</span>}
+                                {errors.phone?.type === 'required' && <span className="label-text-alt text-red-500">{errors.itemName.message}</span>}
                             </label>
                         </div>
 
@@ -181,30 +129,30 @@ const Purchase = () => {
 
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Purchase items</span>
+                                <span className="label-text">order</span>
                             </label>
                             <input
                                 type="number"
-                                placeholder="Items quantity"
+                                placeholder="order Quantity"
                                 className="input input-bordered bg-white"
-                                {...register("items", {
+                                {...register("orderQuantity", {
                                     required: {
                                         value: true,
-                                        message: 'Items is Required'
+                                        message: 'orderQuantity is Required'
                                     },
                                     min: item?.minimumQuantity,
                                     max: item?.availableQuantity
                                 })}
                             />
                             <label className="label">
-                                {errors.items?.type === 'required' && <span className="label-text-alt text-red-500">{errors.items.message}</span>}
+                                {errors.orderQuantity?.type === 'required' && <span className="label-text-alt text-red-500">{errors.orderQuantity.message}</span>}
 
-                                {errors.items?.type === 'min' && <span className="label-text-alt text-red-500">You have to Purchase minimum {item?.minimumQuantity} items</span>}
+                                {errors.orderQuantity?.type === 'min' && <span className="label-text-alt text-red-500">You have to Purchase minimum {item?.minimumQuantity} items</span>}
 
-                                {errors.items?.type === 'max' && <span className="label-text-alt text-red-500">You can't Purchase up to available {item?.availableQuantity} items</span>}
+                                {errors.orderQuantity?.type === 'max' && <span className="label-text-alt text-red-500">You can't Purchase up to available {item?.availableQuantity} items</span>}
                             </label>
                         </div>
-
+                        {/* ==============submit=============== */}
                         <div className="form-control mt-6">
                             <input type='submit' value='Purchase' className="btn btn-primary" />
                         </div>
