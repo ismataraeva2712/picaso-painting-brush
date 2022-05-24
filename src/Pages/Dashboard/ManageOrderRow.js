@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ManageOrderRow = ({ total }) => {
-    const { name, price, orderQuantity, productName, email, phone } = total
+const ManageOrderRow = ({ singleOrder }) => {
+    const { name, price, orderQuantity, productName, email, phone } = singleOrder
     return (
         <tr>
             <th>1</th>
@@ -12,8 +12,10 @@ const ManageOrderRow = ({ total }) => {
             <td>{price}</td>
             <td>{phone}</td>
 
-            <td><button className='btn btn-primary btn-xs'>action</button></td>
-            <td><button className='btn btn-secondary btn-xs'>action</button></td>
+            <td>{singleOrder?.paid && <button className='btn btn-primary btn-xs'>Pending</button>}
+                {!singleOrder?.paid && <button className='btn btn-secondary btn-xs'>Cancel</button>}
+            </td>
+
 
 
         </tr>

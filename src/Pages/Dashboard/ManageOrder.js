@@ -26,14 +26,14 @@ const ManageOrder = () => {
                             <th>phone</th>
 
                             <th>Action</th>
-                            <th>Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            orders.map(total => <ManageOrderRow
-                                key={total._id}
-                                total={total}
+                            orders.map(singleOrder => <ManageOrderRow
+                                key={singleOrder._id}
+                                singleOrder={singleOrder}
                             ></ManageOrderRow>)
                         }
 
