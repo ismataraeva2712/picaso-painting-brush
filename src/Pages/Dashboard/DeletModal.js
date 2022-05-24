@@ -23,14 +23,14 @@ const DeletModal = ({ deleteProduct, refetch, setDeleteProduct }) => {
 
 
 
-            <input type="checkbox" id="delete-modal" class="modal-toggle" />
-            <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                    <h3 class="font-bold text-lg text-secondary">Are you sure ,you want to delet {name} of {_id}product? </h3>
-                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-                    <div class="modal-action">
+            <input type="checkbox" id="delete-modal" className="modal-toggle" />
+            <div className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg text-secondary">Are you sure ,you want to delet {name} of {_id}product? </h3>
+                    <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                    <div className="modal-action">
                         <button onClick={() => handleDelete(_id)} className='btn btn-xs btn-secondary'>Delete</button>
-                        <label for="delete-modal" class="btn btn-xs btn-secondary">Cancel</label>
+                        <label for="delete-modal" className="btn btn-xs btn-secondary">Cancel</label>
                     </div>
                 </div>
             </div>

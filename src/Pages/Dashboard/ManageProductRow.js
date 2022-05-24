@@ -13,7 +13,7 @@ const ManageProductRow = ({ product, index, refetch, setDeleteProduct }) => {
             <th>{availableQuantity}</th>
             <th>{minimumQuantity}</th>
             <th>
-                <label onClick={() => setDeleteProduct(product)} for="delete-modal" class="btn btn-xs btn-secondary">Delete</label>
+                <label onClick={() => setDeleteProduct(product)} for="delete-modal" className="btn btn-xs btn-secondary">Delete</label>
 
             </th>
         </tr>

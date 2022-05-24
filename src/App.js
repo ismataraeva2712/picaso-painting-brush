@@ -18,6 +18,7 @@ import AddProduct from './Pages/Dashboard/AddProduct';
 import ManageProduct from './Pages/Dashboard/ManageProduct';
 import Notfound from './Pages/Shared/Notfound';
 import MyProfile from './Pages/Dashboard/MyProfile';
+import ManageOrder from './Pages/Dashboard/ManageOrder';
 function App() {
   return (
     <div className="App">
@@ -42,6 +43,9 @@ function App() {
           </RequireAdmin>}></Route>
           <Route path='manageproduct' element={<RequireAdmin>
             <ManageProduct></ManageProduct>
+          </RequireAdmin>}></Route>
+          <Route path='manageorder' element={<RequireAdmin>
+            <ManageOrder></ManageOrder>
           </RequireAdmin>}></Route>
 
 

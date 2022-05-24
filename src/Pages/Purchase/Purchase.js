@@ -50,12 +50,12 @@ const Purchase = () => {
     return (
         <div className='flex  flex-col lg:flex-row justify-evenly'>
 
-            <div class="card w-96 bg-base-100 shadow-xl">
-                <figure class="px-10 pt-10">
-                    <img src={item.picture} alt="Shoes" class="rounded-xl" />
+            <div className="card w-96 bg-base-100 shadow-xl">
+                <figure className="px-10 pt-10">
+                    <img src={item.picture} alt="Shoes" className="rounded-xl" />
                 </figure>
-                <div class="card-body items-center text-center">
-                    <h2 class="card-title">Order for : {item.name}</h2>
+                <div className="card-body items-center text-center">
+                    <h2 className="card-title">Order for : {item.name}</h2>
                     <p>{item.description}</p>
                     <p>Price: $ {item.price}</p>
                     <p>Available Quantity: {item.availableQuantity}</p>
