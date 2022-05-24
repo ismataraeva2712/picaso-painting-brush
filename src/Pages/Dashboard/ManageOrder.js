@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import ManageOrderRow from './ManageOrderRow';
+import ModalOrderDelet from './ModalOrderDelet';
 
 const ManageOrder = () => {
+
     const { data: orders, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/bookings').then(res => res.json()))
     if (isLoading) {
         return <Loading></Loading>
@@ -26,14 +28,18 @@ const ManageOrder = () => {
                             <th>phone</th>
 
                             <th>Action</th>
+                            <th>Status</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            orders.map(singleOrder => <ManageOrderRow
+                            orders.map((singleOrder, index) => <ManageOrderRow
                                 key={singleOrder._id}
                                 singleOrder={singleOrder}
+                                refetch={refetch}
+                                index={index}
+
                             ></ManageOrderRow>)
                         }
 
@@ -41,6 +47,7 @@ const ManageOrder = () => {
                     </tbody>
                 </table>
             </div>
+
         </div>
     );
 };
