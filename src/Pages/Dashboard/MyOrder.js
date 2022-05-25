@@ -53,7 +53,7 @@ const MyOrder = () => {
 
   return (
     <div>
-      <h2>My Order : {order.length}</h2>
+
       <div className="overflow-x-auto">
         <table className="table w-full">
 

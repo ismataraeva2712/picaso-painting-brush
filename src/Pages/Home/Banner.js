@@ -1,9 +1,8 @@
 import React from 'react';
-import cover from '../../assetes/cover.jpg'
+
 import b7 from '../../assetes/b7.webp'
 import '../Css/Banner.css'
-import br1 from '../../assetes/br1.jpg'
-import b2 from '../../assetes/b2.jpg'
+
 import Button from '../Shared/Button';
 const Banner = () => {
     return (

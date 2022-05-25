@@ -1,6 +1,6 @@
 import React from 'react';
-import b2 from '../../assetes/b2.jpg'
-import rating2 from '../../assetes/rating2.png'
+
+
 import rate from '../../assetes/rate.png'
 const Review = ({ r }) => {
     const { review, rating, name } = r
@@ -13,7 +13,7 @@ const Review = ({ r }) => {
                 <h2 className="card-title">Name: {name}</h2>
                 <p>Review: {review}</p>
                 <div className="card-actions">
-                    <p >Rating: <span className='text-primary'>{rating}.00</span></p>
+                    <p >Rating: <span className='text-primary'>{rating}</span></p>
                 </div>
             </div>
         </div>

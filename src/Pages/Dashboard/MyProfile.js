@@ -117,7 +117,7 @@ const MyProfile = () => {
             <div>
                 <div className="card w-96 bg-base-100 shadow-xl">
                     <figure className="px-10 pt-10">
-                        <img className='rounded-full' style={{ height: '150px' }} src={avater} alt="Shoes" className="rounded-xl" />
+                        <img className='rounded-full' style={{ height: '150px' }} src={avater} alt="Shoes" />
                     </figure>
                     <div className="card-body items-center text-center">
                         <h2 className="card-title">Name: {user.displayName}</h2>
