@@ -7,7 +7,7 @@ import Button from '../Shared/Button';
 const Banner = () => {
     return (
 
-        <div className="hero min-h-screen my-banner my-banner" style={{ background: `url(${b7})`, backgroundSize: 'cover', }}>
+        <div className="hero min-h-screen my-banner my-banner " style={{ background: `url(${b7})`, backgroundSize: 'cover', }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-md">
