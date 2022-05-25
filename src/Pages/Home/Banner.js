@@ -2,10 +2,13 @@ import React from 'react';
 import cover from '../../assetes/cover.jpg'
 import b7 from '../../assetes/b7.webp'
 import '../Css/Banner.css'
+import br1 from '../../assetes/br1.jpg'
+import b2 from '../../assetes/b2.jpg'
 import Button from '../Shared/Button';
 const Banner = () => {
     return (
-        <div className="hero min-h-screen my-banner" style={{ background: `url(${b7})`, backgroundSize: 'cover', }}>
+
+        <div className="hero min-h-screen my-banner my-banner" style={{ background: `url(${b7})`, backgroundSize: 'cover', }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-md">

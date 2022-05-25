@@ -10,7 +10,7 @@ const Reviews = () => {
     }
     return (
         <div className='px-12 mx-auto'>
-            <h2 className='text-primary fw-bold mb-10 text-2xl'>Reviews of Picaso Painting Brush </h2>
+            <h2 className='text-primary font-bold mb-10 text-2xl'>Reviews of Painting Brush </h2>
             <div
                 className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                 {
