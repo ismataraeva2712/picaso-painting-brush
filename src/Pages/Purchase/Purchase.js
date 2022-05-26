@@ -11,7 +11,7 @@ const Purchase = () => {
     const [user] = useAuthState(auth);
 
     useEffect(() => {
-        const url = `http://localhost:5000/tools/${id}`
+        const url = `https://safe-coast-58270.herokuapp.com/tools/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setItem(data))
@@ -31,7 +31,7 @@ const Purchase = () => {
 
         }
         console.log(booking);
-        fetch('http://localhost:5000/booking', {
+        fetch('https://safe-coast-58270.herokuapp.com/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

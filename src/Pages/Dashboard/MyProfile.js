@@ -12,7 +12,7 @@ const MyProfile = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [profile, setProfile] = useState({})
     useEffect(() => {
-        const url = `http://localhost:5000/user/${user.email}`
+        const url = `https://safe-coast-58270.herokuapp.com/user/${user.email}`
         fetch(url)
             .then(res => res.json())
             .then(data => setProfile(data))
@@ -29,7 +29,7 @@ const MyProfile = () => {
             education: data.education
         }
         console.log(myProfile)
-        fetch(`http://localhost:5000/user/${user.email}`, {
+        fetch(`https://safe-coast-58270.herokuapp.com/user/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -125,7 +125,7 @@ const MyProfile = () => {
 
                         <p>Phone: {profile?.phone ? profile.phone : 'update your phone number'}</p>
 
-                        <p>Education:  {profile?.education ? profile.education : 'update your phone number'}</p>
+                        <p>Education:  {profile?.education ? profile.education : 'update your education '}</p>
 
                     </div>
                 </div>

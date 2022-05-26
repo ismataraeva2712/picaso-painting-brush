@@ -14,7 +14,7 @@ const AddProduct = () => {
             minimumQuantity: data.minimumQuantity,
             picture: data.picture
         }
-        fetch('http://localhost:5000/tools', {
+        fetch('https://safe-coast-58270.herokuapp.com/tools', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

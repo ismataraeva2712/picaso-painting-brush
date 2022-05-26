@@ -12,7 +12,7 @@ const MyOrder = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/booking?email=${user.email}`, {
+      fetch(`https://safe-coast-58270.herokuapp.com/booking?email=${user.email}`, {
         method: 'GET',
         headers: {
           'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -36,7 +36,7 @@ const MyOrder = () => {
   const handleDelete = orderid => {
     const proceed = window.confirm('Are you sure ?? wanna deleted?')
     if (proceed) {
-      const url = `http://localhost:5000/booking/${orderid}`
+      const url = `https://safe-coast-58270.herokuapp.com/booking/${orderid}`
       fetch(url, {
         method: 'DELETE'
       })

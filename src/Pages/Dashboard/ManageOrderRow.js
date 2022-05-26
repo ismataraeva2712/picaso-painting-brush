@@ -5,7 +5,7 @@ const ManageOrderRow = ({ singleOrder, refetch, index }) => {
     const { name, price, orderQuantity, productName, email, phone, _id } = singleOrder
     const handleShippedOrder = id => {
 
-        fetch(`http://localhost:5000/shipped/${id}`, {
+        fetch(`https://safe-coast-58270.herokuapp.com/shipped/${id}`, {
             method: 'PATCH',
 
         })
@@ -18,7 +18,7 @@ const ManageOrderRow = ({ singleOrder, refetch, index }) => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure ?? wanna deleted?')
         if (proceed) {
-            fetch(`http://localhost:5000/booking/${_id}`, {
+            fetch(`https://safe-coast-58270.herokuapp.com/booking/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

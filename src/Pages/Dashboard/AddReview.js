@@ -17,7 +17,7 @@ const AddReview = () => {
             rating: data.rating
         }
         console.log(reviewProduct)
-        fetch('http://localhost:5000/review', {
+        fetch('https://safe-coast-58270.herokuapp.com/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

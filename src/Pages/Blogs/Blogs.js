@@ -4,7 +4,7 @@ const Blogs = () => {
     return (
         <div className='px-12 mx-auto text-left'>
             <h2 className='my-10 text-primary text-3xl text-center font-bold' >Blogs</h2>
-            <div class="divider"></div>
+            <div className="divider"></div>
             <h2 className='my-5 text-primary text-2xl'>How will you improve the performance of a React Application?</h2>
             <p>Lazy loading has become one of the ways to optimize React applications to speed up the load time.
                 react-lazyload (npm i react-lazyload)
