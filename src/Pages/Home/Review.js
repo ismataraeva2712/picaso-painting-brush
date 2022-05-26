@@ -5,7 +5,7 @@ import rate from '../../assetes/rate.png'
 const Review = ({ r }) => {
     const { review, rating, name } = r
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card max-w-sm mx-auto bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
                 <img style={{ height: '50px' }} src={rate} alt="Shoes" className="rounded-xl" />
             </figure>
